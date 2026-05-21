@@ -291,78 +291,114 @@ h1{
 .btn-secondary:hover,.btn-light:hover{border-color:var(--asc);background:var(--asc-soft)}
 
 .results-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
-.results-title h2{font-size:30px;color:var(--ink);letter-spacing:-.04em;margin-bottom:5px}
+.results-title h2{font-size:28px;color:var(--ink);letter-spacing:-.04em;margin-bottom:5px}
 .results-title p{color:var(--muted);font-size:13px}
 .action-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
 
-.results-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
-.result-hero{
+/* Tres métricas balanceadas */
+.bal-metrics{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:16px;
+}
+.bal-metric{
   background:linear-gradient(135deg,var(--asc),#174f93);
-  border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;color:#fff;
-  position:relative;overflow:hidden;
+  border-radius:var(--radius);
+  padding:20px 22px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
 }
-.result-hero:after{
-  content:'ASCENDER';position:absolute;right:-10px;bottom:-18px;
-  font-size:70px;font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.06);
+.bal-metric::after{
+  content:'';
+  position:absolute;
+  right:-20px;bottom:-20px;
+  width:90px;height:90px;
+  border-radius:50%;
+  background:rgba(255,255,255,.05);
 }
-.rh-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:rgba(255,255,255,.72);margin-bottom:8px}
-.rh-value{font-size:54px;line-height:.95;font-weight:900;letter-spacing:-.055em;margin-bottom:10px}
-.rh-sub{font-size:13px;color:rgba(255,255,255,.78)}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;position:relative;z-index:2}
-.metric{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px}
-.metric span{display:block;font-size:10px;color:rgba(255,255,255,.68);font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.metric strong{font-size:18px;color:#fff}
+.bal-metric.primary{
+  background:linear-gradient(135deg,#0f2f5d,var(--asc));
+  border:1.5px solid rgba(255,255,255,.1);
+}
+.bal-metric.accent{
+  background:linear-gradient(135deg,#1e5aa0,#133f7a);
+}
+.bm-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:rgba(255,255,255,.6);margin-bottom:8px}
+.bm-value{font-size:clamp(18px,2vw,26px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-.02em}
+.bal-metric.accent .bm-value{color:#93c5fd}
+.bm-sub{margin-top:6px;font-size:11px;color:rgba(255,255,255,.55)}
+
+/* Panel de ingreso destacado */
+.income-hero{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin-bottom:14px;
+}
+.ih-top{
+  background:linear-gradient(135deg,var(--success-soft),#d1fae5);
+  border-bottom:1px solid #a7f3d0;
+  padding:18px 20px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+}
+.ih-label{font-size:10px;text-transform:uppercase;letter-spacing:.10em;font-weight:900;color:#047857;margin-bottom:6px}
+.ih-value{font-size:clamp(24px,2.8vw,34px);font-weight:900;color:var(--success);line-height:1;letter-spacing:-.03em}
+.ih-sub{font-size:11px;color:#065f46;margin-top:5px}
+.ih-rule{text-align:right;min-width:120px}
+.ihr-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:#047857;margin-bottom:4px}
+.ihr-value{font-size:16px;font-weight:900;color:var(--success)}
+.ih-detail{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+}
+.ihd-item{
+  padding:12px 16px;
+  border-right:1px solid var(--line);
+}
+.ihd-item:last-child{border-right:none}
+.ihd-item.success{background:var(--success-soft)}
+.ihd-item span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted);margin-bottom:4px}
+.ihd-item strong{font-size:15px;color:var(--asc);font-weight:800}
+.ihd-item.success strong{color:var(--success)}
+
+.results-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-.card-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
-.card-head h3{font-size:14px;color:var(--ink);letter-spacing:-.01em}
+.card-head{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.card-head h3{font-size:13px;color:var(--ink);letter-spacing:-.01em;font-weight:700}
 .card-head span{font-size:11px;color:var(--muted);font-weight:750}
-.card-body{padding:18px}
-.ret-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ret-item{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px}
-.ret-item small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted);margin-bottom:5px}
-.ret-item strong{font-size:21px;color:var(--asc)}
-.key-card{margin-top:18px}
-.key-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card-body{padding:16px}
+.ret-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ret-item{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}
+.ret-item small{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted);margin-bottom:4px}
+.ret-item strong{font-size:18px;color:var(--asc)}
 .key-item{
   background:#f8fafc;
   border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
+  border-radius:12px;
+  padding:12px 14px;
 }
 .key-item.highlight{
   background:var(--asc-soft2);
   border-color:#cfe1f7;
 }
 .key-item small{
-  display:block;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  font-weight:900;
-  color:var(--muted);
-  margin-bottom:5px;
+  display:block;font-size:10px;text-transform:uppercase;
+  letter-spacing:.08em;font-weight:900;color:var(--muted);margin-bottom:4px;
 }
-.key-item strong{
-  display:block;
-  font-size:20px;
-  color:var(--asc);
-  margin-bottom:4px;
-}
-.key-item span{
-  font-size:11px;
-  color:var(--muted);
-  font-weight:700;
-}
-.key-note{
-  margin-top:10px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.45;
-  padding:0 2px;
-}
+.key-item strong{display:block;font-size:17px;color:var(--asc);margin-bottom:3px}
+.key-item span{font-size:11px;color:var(--muted);font-weight:700}
+.key-note{margin-top:10px;color:var(--muted);font-size:11px;line-height:1.45;padding:0 2px}
 .hidden{display:none!important}
-.chart-card,.comp-card{margin-top:18px}
-#chartCanvas{max-height:260px}
+.chart-card,.comp-card{margin-top:14px}
+#chartCanvas{max-height:240px}
 .comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .comp-item{border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:#fff}
 .comp-item .emoji{font-size:22px;display:block;margin-bottom:6px}
@@ -395,8 +431,9 @@ td{padding:10px;border-bottom:1px solid #edf2f7;color:#334155;font-weight:650}
   .topbar{align-items:flex-start;flex-direction:column}
   .logo-asc{height:76px;width:360px;max-width:72vw}
   .form-grid-main,.results-grid{grid-template-columns:1fr}
-  .grid-2,.metrics,.comp-grid{grid-template-columns:1fr}
-  .rh-value{font-size:38px}
+  .grid-2,.comp-grid{grid-template-columns:1fr}
+  .bal-metrics{grid-template-columns:1fr 1fr}
+  .ih-detail{grid-template-columns:1fr 1fr}
   h1{font-size:32px}
   .form-head{flex-direction:column}
 }
@@ -703,57 +740,57 @@ td{padding:10px;border-bottom:1px solid #edf2f7;color:#334155;font-weight:650}
         </div>
       </div>
 
+      <!-- 3 métricas principales en fila balanceada -->
+      <div class="bal-metrics">
+        <div class="bal-metric primary">
+          <div class="bm-label">Fondo al finalizar aportaciones</div>
+          <div class="bm-value" id="keyFondoPlan">—</div>
+          <div class="bm-sub" id="keyEdadPlan">—</div>
+        </div>
+        <div class="bal-metric" id="key60Box">
+          <div class="bm-label" id="key60Label">Referencia Art. 93 · 60 años</div>
+          <div class="bm-value" id="keyFondo60">—</div>
+          <div class="bm-sub">Punto fiscal relevante</div>
+        </div>
+        <div class="bal-metric accent">
+          <div class="bm-label">Proyección a los 65 años</div>
+          <div class="bm-value" id="fondo65">—</div>
+          <div class="bm-sub" id="edadFinPlan">—</div>
+        </div>
+      </div>
+
+      <!-- Panel de ingreso + datos clave en grid 2 columnas -->
       <div class="results-grid">
         <div>
-          <div class="result-hero">
-            <div class="rh-label">Fondo estimado a los 65 años</div>
-            <div class="rh-value" id="fondo65">—</div>
-            <div class="rh-sub">
-              Escenario ilustrativo bajo los supuestos capturados. Edad fin de aportaciones:
-              <strong id="edadFinPlan">—</strong>
+          <!-- Ingreso mensual destacado -->
+          <div class="income-hero">
+            <div class="ih-top">
+              <div>
+                <div class="ih-label">Ingreso mensual estimado en retiro</div>
+                <div class="ih-value" id="pmtReal">—</div>
+                <div class="ih-sub">Sobre capital a los 65 años · 20 años simulados</div>
+              </div>
+              <div class="ih-rule">
+                <div class="ihr-label">Regla del 4% anual</div>
+                <div class="ihr-value" id="rule4">—</div>
+              </div>
             </div>
-
-            <div class="metrics">
-              <div class="metric">
+            <div class="ih-detail">
+              <div class="ihd-item">
                 <span>Total aportado</span>
                 <strong id="totalAportado">—</strong>
               </div>
-              <div class="metric">
+              <div class="ihd-item">
                 <span>Rendimiento estimado</span>
                 <strong id="rendimiento">—</strong>
               </div>
-              <div class="metric">
+              <div class="ihd-item">
                 <span>Duración del plan</span>
                 <strong id="yearsPlan">—</strong>
               </div>
-            </div>
-          </div>
-
-          <div class="card key-card">
-            <div class="card-head">
-              <h3>Momentos clave de tu simulación</h3>
-              <span>Montos estimados</span>
-            </div>
-            <div class="card-body">
-              <div class="key-grid">
-                <div class="key-item">
-                  <small>Fin de aportaciones</small>
-                  <strong id="keyFondoPlan">—</strong>
-                  <span id="keyEdadPlan">—</span>
-                </div>
-                <div class="key-item highlight" id="key60Box">
-                  <small id="key60Label">Referencia a los 60 años</small>
-                  <strong id="keyFondo60">—</strong>
-                  <span>Si el fondo continúa proyectándose sin nuevas aportaciones, cuando aplique.</span>
-                </div>
-                <div class="key-item">
-                  <small>Proyección a los 65 años</small>
-                  <strong id="keyFondo65">—</strong>
-                  <span>Escenario estimado a edad 65.</span>
-                </div>
-              </div>
-              <div class="key-note" id="keyNote">
-                Referencia Art. 93: los 60 años se muestran como punto fiscal relevante. Montos ilustrativos sujetos a condiciones del producto y normativa vigente.
+              <div class="ihd-item success">
+                <span>Multiplicador</span>
+                <strong id="multiplicador">—</strong>
               </div>
             </div>
           </div>
@@ -769,33 +806,62 @@ td{padding:10px;border-bottom:1px solid #edf2f7;color:#334155;font-weight:650}
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-head">
-            <h3>Ingreso mensual estimado en retiro</h3>
-            <span>20 años</span>
-          </div>
-          <div class="card-body">
-            <div class="ret-grid">
-              <div class="ret-item">
-                <small>Mensualidad estimada</small>
-                <strong id="pmtReal">—</strong>
+        <div>
+          <!-- Parámetros técnicos del retiro -->
+          <div class="card">
+            <div class="card-head">
+              <h3>Parámetros del retiro simulado</h3>
+              <span>20 años</span>
+            </div>
+            <div class="card-body">
+              <div class="ret-grid">
+                <div class="ret-item">
+                  <small>Mensualidad estimada</small>
+                  <strong id="pmtRealB">—</strong>
+                </div>
+                <div class="ret-item">
+                  <small>Meses simulados</small>
+                  <strong id="nMeses">—</strong>
+                </div>
+                <div class="ret-item">
+                  <small>Tasa real mensual</small>
+                  <strong id="iRealMes">—</strong>
+                </div>
+                <div class="ret-item">
+                  <small>Referencia 4% anual</small>
+                  <strong id="rule4B">—</strong>
+                </div>
               </div>
-              <div class="ret-item">
-                <small>Meses simulados</small>
-                <strong id="nMeses">—</strong>
-              </div>
-              <div class="ret-item">
-                <small>Tasa real mensual</small>
-                <strong id="iRealMes">—</strong>
-              </div>
-              <div class="ret-item">
-                <small>Referencia 4% anual</small>
-                <strong id="rule4">—</strong>
+              <div class="small-note" style="margin-top:12px">
+                <strong>Nota:</strong> estimación matemática bajo los supuestos capturados. No representa garantía de pago.
               </div>
             </div>
+          </div>
 
-            <div class="small-note">
-              <strong>Nota:</strong> esta mensualidad es una estimación matemática bajo los supuestos capturados. No representa garantía de pago ni rendimiento.
+          <!-- Momentos clave compactos -->
+          <div class="card" style="margin-top:14px" id="keyNote">
+            <div class="card-head">
+              <h3>Momentos clave</h3>
+              <span>Montos estimados</span>
+            </div>
+            <div class="card-body" style="padding:14px">
+              <div style="display:grid;gap:8px">
+                <div class="key-item">
+                  <small>Fin aportaciones</small>
+                  <strong id="keyFondoPlanB">—</strong>
+                  <span id="keyEdadPlanB">—</span>
+                </div>
+                <div class="key-item highlight" id="key60BoxB">
+                  <small>Referencia Art. 93 · 60 años</small>
+                  <strong id="keyFondo60B">—</strong>
+                  <span>Punto fiscal relevante</span>
+                </div>
+                <div class="key-item">
+                  <small>A los 65 años</small>
+                  <strong id="keyFondo65B">—</strong>
+                  <span>Escenario estimado</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1319,17 +1385,26 @@ function calcAccum(){
 
   $('clientNameResult').textContent = reportState.nombre || 'cliente';
   $('fondo65').textContent = money(fondo65);
-  $('edadFinPlan').textContent = `${Math.round(edadFinPlan)} años`;
+  $('edadFinPlan').textContent = `Edad fin de aportaciones: ${Math.round(edadFinPlan)} años`;
   $('totalAportado').textContent = money(totalAportado);
   $('rendimiento').textContent = money(rendimiento);
   $('yearsPlan').textContent = `${yrsAport} años`;
   $('keyFondoPlan').textContent = money(fondoPlan);
   $('keyEdadPlan').textContent = `Edad estimada: ${Math.round(edadFinPlan)} años`;
-  $('keyFondo65').textContent = money(fondo65);
+  if($('keyFondo65')) $('keyFondo65').textContent = money(fondo65);
   $('keyFondo60').textContent = fondo60 ? money(fondo60) : '—';
   $('key60Box').classList.toggle('hidden', !(regimen === '93' && edad < 60));
+  if($('key60BoxB')) $('key60BoxB').classList.toggle('hidden', !(regimen === '93' && edad < 60));
   $('keyNote').classList.toggle('hidden', regimen !== '93');
-  $('key60Label').textContent = regimen === '93' ? 'Referencia Art. 93 a los 60 años' : 'Referencia a los 60 años';
+  $('key60Label').textContent = regimen === '93' ? 'Referencia Art. 93 · 60 años' : 'Referencia a los 60 años';
+  // Mirror IDs for the compact panel
+  if($('keyFondoPlanB')) $('keyFondoPlanB').textContent = money(fondoPlan);
+  if($('keyEdadPlanB')) $('keyEdadPlanB').textContent = `Edad estimada: ${Math.round(edadFinPlan)} años`;
+  if($('keyFondo60B')) $('keyFondo60B').textContent = fondo60 ? money(fondo60) : '—';
+  if($('keyFondo65B')) $('keyFondo65B').textContent = money(fondo65);
+  // Multiplicador
+  const mult = totalAportado > 0 ? (fondoPlan/totalAportado).toFixed(1)+'x' : '—';
+  if($('multiplicador')) $('multiplicador').textContent = mult;
   $('advisorNameResult').textContent = reportState.advisorName;
   $('pvRet').value = String(fondo65);
   $('compTitle').textContent = `Comparativo al finalizar tu periodo de aportaciones`;
@@ -1432,9 +1507,12 @@ function calcRet(){
   const iReal = rReal/12;
 
   $('pmtReal').textContent = money(PMT);
+  if($('pmtRealB')) $('pmtRealB').textContent = money(PMT);
+  if($('ih-value')) $('ih-value').textContent = money(PMT);
   $('nMeses').textContent = String(n);
   $('iRealMes').textContent = (iReal*100).toFixed(3)+'%';
   $('rule4').textContent = money(PV*0.04)+' /año';
+  if($('rule4B')) $('rule4B').textContent = money(PV*0.04)+' /año';
 
   const tbodyRet = $('tbodyRet');
   tbodyRet.innerHTML = '';
