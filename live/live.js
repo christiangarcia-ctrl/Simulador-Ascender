@@ -6,7 +6,7 @@ function render(){
   if(+$('retire').value<=age) $('retire').value=age+1;
   const retirement=+$('retire').value, monthly=+$('monthly').value;
   $('retireMin').innerHTML=`${Math.max(50,age+1)} <span>80 años</span>`;
-  $('ageOut').textContent=age+' años'; $('retireOut').textContent=retirement+' años'; $('monthlyOut').textContent=money(monthly);
+  for(const id of ['age','retire','monthly']){const field=$(id+'Out'),slider=$(id);field.value=slider.value;field.min=slider.min;field.max=slider.max;field.step='1';}
   const result=GarbaProjection(age,retirement,monthly);
   $('capital').textContent=money(result.balance); $('contributed').textContent=money(result.contributed);
   $('difference').textContent=money(result.balance-result.contributed);
@@ -23,7 +23,24 @@ function render(){
   const ticks=[...new Set([0,Math.floor((result.points.length-1)/2),result.points.length-1])].map(i=>`<text x="${x(i)}" y="100" text-anchor="middle" fill="#b3c6d8" font-size="15">${result.points[i].age} años</text>`).join('');
   $('chart').innerHTML=`<title id="chartTitle">Capital estimado ${money(result.balance)} a los ${retirement} años; aportación total ${money(result.contributed)}</title><defs><linearGradient id="fill" x2="0" y2="1"><stop stop-color="#eac16c" stop-opacity=".7"/><stop offset="1" stop-color="#eac16c" stop-opacity=".08"/></linearGradient></defs>${grid}<path d="${path('balance')} L937,77 L72,77 Z" fill="url(#fill)"/><path d="${path('balance')}" fill="none" stroke="#edc36c" stroke-width="3"/><path d="${path('contributed')}" fill="none" stroke="#43b7fa" stroke-width="3"/>${ticks}`;
 }
-document.querySelectorAll('[data-for]').forEach(button=>button.onclick=()=>{const input=$(button.dataset.for);input.value=Math.min(+input.max,Math.max(+input.min,+input.value+(+button.dataset.dir)*(+input.step||1)));render();});
+document.querySelectorAll('[data-for]').forEach(button=>button.onclick=()=>{const input=$(button.dataset.for);input.value=Math.min(+input.max,Math.max(+input.min,+input.value+(+button.dataset.dir)*(button.dataset.for==='monthly'?500:1)));render();});
+// Commit direct entry only on Enter or blur, so partial typing does not change the scenario.
+for(const id of ['age','retire','monthly']){
+  const field=$(id+'Out');
+  const commit=()=>{
+    const value=field.valueAsNumber;
+    if(field.value.trim()==='' || !Number.isFinite(value) || !field.checkValidity()){
+      field.reportValidity(); return;
+    }
+    $(id).value=String(value);render();
+  };
+  field.addEventListener('blur',commit);
+  field.addEventListener('keydown',event=>{
+    if(event.key==='Enter'){event.preventDefault();commit();}
+    if(event.key==='Escape'){event.preventDefault();field.value=$(id).value;field.blur();}
+  });
+  field.addEventListener('focus',()=>field.select());
+}
 ['age','retire','monthly','goal'].forEach(id=>$(id).addEventListener('input',render)); render();
 let stream;
 $('startCamera').onclick=async()=>{
